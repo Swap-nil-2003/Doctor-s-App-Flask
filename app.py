@@ -11,21 +11,35 @@ load_dotenv()
 app = Flask(__name__)
 # Step 1: Specify the directory and file name where the model is saved
 
-directory = os.getenv('MODEL_DIRECTORY') 
+# directory = os.getenv('MODEL_DIRECTORY') 
+# model_filename = 'disease_prediction_model.pkl'
+# label_encoder_filename='label_encoder_2.pkl'
+# scaler_filename='scaler.pkl'
+# file_path = os.path.join(directory, model_filename)
+# label_encoder_path=os.path.join(directory,label_encoder_filename)
+# scaler_path=os.path.join(directory,scaler_filename)
+
+# Load model files (assuming they're in the same directory)
 model_filename = 'disease_prediction_model.pkl'
-label_encoder_filename='label_encoder_2.pkl'
-scaler_filename='scaler.pkl'
-file_path = os.path.join(directory, model_filename)
-label_encoder_path=os.path.join(directory,label_encoder_filename)
-scaler_path=os.path.join(directory,scaler_filename)
+label_encoder_filename = 'label_encoder_2.pkl'
+scaler_filename = 'scaler.pkl'
+
+loaded_model = joblib.load(model_filename)
+print(f"Model loaded from {model_filename}")
+
+label_encoder = joblib.load(label_encoder_filename)
+print(f"Label Encoder loaded from {label_encoder_filename}")
+
+scaler = joblib.load(scaler_filename)
+print(f"Scaler loaded from {scaler_filename}")
 
 # Step 2: Load the saved model
-loaded_model = joblib.load(file_path)
-print(f"Model loaded from {file_path}")
-label_encoder=joblib.load(label_encoder_path)
-print(f"Label Encoder loaded from {label_encoder_path}")
-scaler=joblib.load(scaler_path)
-print(f"Scaler loaded from {scaler_path}")
+# loaded_model = joblib.load(file_path)
+# print(f"Model loaded from {file_path}")
+# label_encoder=joblib.load(label_encoder_path)
+# print(f"Label Encoder loaded from {label_encoder_path}")
+# scaler=joblib.load(scaler_path)
+# print(f"Scaler loaded from {scaler_path}")
 
 # Load the trained model
 def load_model(model_path):
